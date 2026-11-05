@@ -1,0 +1,847 @@
+/* The Art of Perspective  ·  style.css */
+
+/* ==========================================================================
+   1. THEME  (antique ivory, parchment, burgundy, muted gold, dark walnut)
+   ========================================================================== */
+:root {
+  --ivory: #f7f0de;
+  --parch: #eadbb8;
+  --burg: #5e1424;
+  --gold: #b08d3c;
+  --walnut: #2e1d12;
+  --bg: var(--ivory);
+  --bg2: var(--parch);
+  --ink: var(--walnut);
+  --soft: #5b4636;
+  --acc: var(--burg);
+  --line: #c9b27a;
+  --card: #fbf6e8;
+  --onacc: #f7f0de;
+  --serif: "Cormorant Garamond",Garamond,Georgia,serif;
+  --sans: "Source Sans 3",system-ui,sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #1f140c;
+  --bg2: #2a1b10;
+  --ink: #f1e6c8;
+  --soft: #cdbb97;
+  --acc: #d9b25a;
+  --line: #6b5326;
+  --card: #2a1b10;
+  --onacc: #1f140c;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1f140c;
+    --bg2: #2a1b10;
+    --ink: #f1e6c8;
+    --soft: #cdbb97;
+    --acc: #d9b25a;
+    --line: #6b5326;
+    --card: #2a1b10;
+    --onacc: #1f140c;
+    color-scheme: dark;
+  }
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+html {
+  scroll-padding-top: calc(72px + env(safe-area-inset-top,0px));
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 var(--sans);
+  min-height: 100%;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+section {
+  padding: 84px 0;
+}
+.orn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gold);
+  margin: 0 auto 26px;
+  max-width: 260px;
+}
+.orn::before,
+.orn::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+h2 {
+  font-size: clamp(34px,4.6vw,56px);
+  color: var(--acc);
+}
+[hidden] {
+  display: none!important;
+}
+
+/* ==========================================================================
+   3. NAVIGATION
+   ========================================================================== */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top,0px);
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top,0px);
+  background: var(--bg);
+  z-index: 30;
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font: 700 23px/1 var(--serif);
+  letter-spacing: .01em;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+.brand svg {
+  width: 30px;
+  height: 34px;
+  flex: none;
+}
+.links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+.links a,
+.links button {
+  font: 600 15px var(--sans);
+  text-decoration: none;
+  color: var(--soft);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.links a:hover,
+.links button:hover {
+  color: var(--acc);
+}
+
+/* ==========================================================================
+   4. BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  font: 600 16px var(--sans);
+  padding: 14px 26px;
+  border: 1px solid var(--acc);
+  background: var(--acc);
+  color: var(--onacc);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 2px;
+  letter-spacing: .02em;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.btn:hover {
+  filter: brightness(1.12);
+}
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+  background: radial-gradient(ellipse at 70% 40%,var(--bg2),var(--bg) 70%);
+  padding: 56px 0 72px;
+}
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: center;
+}
+.kick {
+  font: italic 500 22px var(--serif);
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+.hero h1 {
+  font-size: clamp(46px,7vw,86px);
+  letter-spacing: .02em;
+  color: var(--acc);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.tag {
+  font: italic 500 clamp(24px,3vw,34px)/1.25 var(--serif);
+  margin: 20px 0 22px;
+}
+.hero p.q {
+  font-size: 19px;
+  color: var(--soft);
+  max-width: 46ch;
+  margin: 0 0 32px;
+}
+.cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   6. GILDED FRAME  (the same frame for every artwork)
+   ========================================================================== */
+.frame {
+  position: relative;
+  padding: 14px;
+  background: linear-gradient(135deg,#d9b25a,#8a6a24 45%,#e6c779 70%,#8a6a24);
+  border-radius: 150px 150px 4px 4px;
+  box-shadow: 0 24px 50px -20px rgba(46,29,18,.6);
+}
+.frame .inner {
+  border: 6px solid #3a2616;
+  border-radius: 136px 136px 0 0;
+  overflow: hidden;
+  background: #222;
+}
+.frame img,
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#lensImg {
+  transition: filter .6s;
+}
+.plaque {
+  margin: 12px auto 0;
+  max-width: 260px;
+  text-align: center;
+  font: italic 500 15px var(--serif);
+  color: var(--soft);
+}
+#artBig,
+#wFrame .inner {
+  aspect-ratio: 4/5;
+  background: #1f140c;
+}
+#artBig {
+  display: flex;
+}
+#artBig img,
+#wFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#artFrame,
+#wFrame {
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   7. SIGNATURE SECTION  (The Same Canvas, Different Worlds)
+   ========================================================================== */
+.sig {
+  background: var(--bg2);
+  border-block: 1px solid var(--line);
+}
+.sig .wrap {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+.sig p {
+  color: var(--soft);
+  max-width: 54ch;
+}
+.lens {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0 14px;
+  flex-wrap: wrap;
+}
+.lens button {
+  font: 600 15px var(--sans);
+  padding: 10px 18px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 30px;
+  cursor: pointer;
+}
+.lens button[aria-pressed="true"] {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--onacc);
+}
+.story {
+  min-height: 5.2em;
+  font: italic 500 22px/1.4 var(--serif);
+  border-left: 3px solid var(--gold);
+  padding-left: 18px;
+  margin: 0 0 26px;
+}
+.pull {
+  font: italic 600 clamp(24px,3vw,32px)/1.3 var(--serif);
+  color: var(--acc);
+  margin: 28px 0 0;
+}
+
+/* ==========================================================================
+   8. GALLERY  (side-scrolling rail, drag with the mouse)
+   ========================================================================== */
+.head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.head p {
+  color: var(--soft);
+  max-width: 52ch;
+  margin: 14px auto 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 30px;
+  align-items: start;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 12px 12px 18px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  display: block;
+  width: 100%;
+}
+.card .mat {
+  aspect-ratio: 4/5;
+  border: 1px solid var(--gold);
+  padding: 8px;
+  background: var(--bg2);
+}
+.card h3 {
+  font-size: 24px;
+  margin: 14px 4px 2px;
+}
+.card span {
+  display: block;
+  margin: 0 4px;
+  font-size: 14px;
+  color: var(--soft);
+}
+.card .n {
+  color: var(--acc);
+  font-weight: 600;
+  margin-top: 8px;
+}
+.card:hover {
+  border-color: var(--acc);
+}
+.grid.rail {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 4px 18px;
+  scrollbar-color: var(--gold) transparent;
+}
+.rail>.card,
+.rail>div {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+.railwrap {
+  position: relative;
+}
+.rail {
+  cursor: grab;
+}
+.rail.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+.rail img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.rarr {
+  position: absolute;
+  top: 38%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: var(--bg);
+  color: var(--acc);
+  font: 600 26px/1 var(--serif);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(46,29,18,.25);
+}
+.rarr.l {
+  left: -10px;
+}
+.rarr.r {
+  right: -10px;
+}
+
+/* ==========================================================================
+   9. ARTWORK DISCUSSION PAGE
+   ========================================================================== */
+.art-top {
+  padding: 40px 24px 0;
+}
+#del {
+  float: right;
+  color: var(--soft);
+}
+#aTitle {
+  font-size: clamp(38px,5vw,60px);
+  color: var(--acc);
+}
+.section-title {
+  font-size: 28px;
+  margin-top: 18px;
+}
+.back {
+  background: none;
+  border: 0;
+  color: var(--acc);
+  font: 600 16px var(--sans);
+  cursor: pointer;
+  padding: 0 0 18px;
+}
+.art .wrap {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 52px;
+  padding-bottom: 80px;
+}
+.meta {
+  color: var(--soft);
+  font-style: italic;
+  font-family: var(--serif);
+  font-size: 20px;
+  margin: 8px 0 18px;
+}
+.ask {
+  border-left: 3px solid var(--gold);
+  padding-left: 16px;
+  font: italic 500 21px/1.4 var(--serif);
+  margin: 20px 0;
+}
+.persp {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.persp b {
+  font-family: var(--serif);
+  font-size: 21px;
+}
+.chip {
+  display: inline-block;
+  font: 600 13px var(--sans);
+  color: var(--acc);
+  border: 1px solid var(--gold);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+.persp p {
+  margin: 8px 0 0;
+  color: var(--soft);
+}
+
+/* ==========================================================================
+   10. FORMS
+   ========================================================================== */
+.field,
+.field select,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 2px;
+}
+.form {
+  display: grid;
+  gap: 12px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 22px;
+  margin-top: 26px;
+}
+.form label {
+  font-weight: 600;
+  font-size: 15px;
+}
+.rule {
+  font-size: 14px;
+  color: var(--soft);
+  margin: 0;
+}
+.form h3 {
+  font-size: 26px;
+}
+.panel .form {
+  max-width: 560px;
+  margin: 0;
+}
+.err {
+  color: #b3261e;
+  font-size: 15px;
+  margin: 0;
+  min-height: 1.4em;
+}
+.field-row {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.field-row label {
+  font-weight: 600;
+  font-size: 15px;
+}
+.notice {
+  font-size: 14px;
+  color: var(--soft);
+}
+
+/* ==========================================================================
+   11. FOOTER & TOAST
+   ========================================================================== */
+footer {
+  background: var(--walnut);
+  color: #cdbb97;
+  text-align: center;
+  padding: 44px 24px;
+}
+footer .t {
+  font: italic 600 24px var(--serif);
+  color: #d9b25a;
+  margin-bottom: 6px;
+}
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom,0px));
+  transform: translate(-50%,30px);
+  background: var(--burg);
+  color: #f7f0de;
+  padding: 12px 22px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+  z-index: 40;
+  border: 1px solid var(--gold);
+}
+#toast.on {
+  opacity: 1;
+  transform: translate(-50%,0);
+}
+.frame.l {
+  border-radius: 4px;
+  max-width: 780px;
+}
+.frame.l .inner {
+  border-radius: 0;
+}
+.mat img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   12. AVATARS
+   ========================================================================== */
+.av {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--acc) center/cover no-repeat;
+  color: var(--onacc);
+  display: grid;
+  place-items: center;
+  font: 700 34px var(--serif);
+  border: 2px solid var(--gold);
+  flex: none;
+}
+.av.sm {
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
+  border-width: 1px;
+}
+
+/* ==========================================================================
+   13. LOG IN / REGISTER
+   ========================================================================== */
+.narrow {
+  max-width: 460px;
+}
+.authbox {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 32px;
+  margin: 56px 0;
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+}
+.tabs button,
+.side button,
+.link {
+  font: 600 15px var(--sans);
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 9px 16px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.tabs button[aria-pressed="true"],
+.side button[aria-current="true"] {
+  background: var(--acc);
+  color: var(--onacc);
+  border-color: var(--acc);
+}
+
+/* ==========================================================================
+   14. DASHBOARD
+   ========================================================================== */
+.dash {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.side {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.side .who {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  margin-bottom: 14px;
+}
+.side small {
+  color: var(--soft);
+  word-break: break-all;
+}
+.side button {
+  text-align: left;
+}
+.badge {
+  background: var(--gold);
+  color: var(--walnut);
+  border-radius: 20px;
+  padding: 1px 8px;
+  font-size: 13px;
+  margin-left: 6px;
+}
+.authbox h2 {
+  font-size: 40px;
+}
+#readall {
+  margin-bottom: 18px;
+}
+.profile-pic {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.profile-pic label {
+  font-weight: 600;
+}
+.panel h2 {
+  font-size: 40px;
+  margin-bottom: 22px;
+}
+.empty {
+  color: var(--soft);
+}
+.note {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.note.new {
+  border-left: 4px solid var(--acc);
+  background: var(--bg2);
+}
+.link {
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 6px 12px;
+}
+.rx {
+  font: 600 15px var(--sans);
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 0 8px 8px 0;
+}
+.rx[aria-pressed="true"] {
+  background: var(--acc);
+  color: var(--onacc);
+  border-color: var(--acc);
+}
+.persp .av {
+  display: inline-grid;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+#acct {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ready {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 20px 24px;
+  margin-bottom: 26px;
+}
+.ready h3 {
+  font-size: 28px;
+  color: var(--acc);
+}
+.ready p {
+  margin: 4px 0 0;
+  color: var(--soft);
+}
+
+/* ==========================================================================
+   15. RESPONSIVE & MOTION
+   ========================================================================== */
+@media (max-width:860px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+  }
+  .frame {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .sig .wrap {
+    grid-template-columns: 1fr;
+  }
+  .sig .frame {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .art .wrap {
+    grid-template-columns: 1fr;
+  }
+  .art .frame {
+    max-width: 340px;
+  }
+}
+@media (max-width:720px) {
+  .links a {
+    display: none;
+  }
+  .brand {
+    font-size: 19px;
+  }
+}
+@media (max-width:820px) {
+  .dash {
+    grid-template-columns: 1fr;
+  }
+  .side {
+    grid-template-columns: 1fr 1fr;
+  }
+  .side .who {
+    grid-column: 1/-1;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  * {
+    transition: none!important;
+  }
+}

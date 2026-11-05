@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Art of Perspective</title>
+
+  <!-- Fonts: Cormorant Garamond (headings) + Source Sans 3 (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="nav">
+    <div class="wrap">
+      <button class="brand" data-go="home" aria-label="The Art of Perspective, home">
+        <svg viewBox="0 0 30 34" fill="none" stroke="#b08d3c" stroke-width="1.6" aria-hidden="true">
+          <path d="M3 33V15a12 12 0 0 1 24 0v18"/>
+          <path d="M8 33V16a7 7 0 0 1 14 0v17"/>
+          <circle cx="15" cy="15" r="2" fill="#5e1424" stroke="none"/>
+          <path d="M1 33h28"/>
+        </svg>
+        <span>The Art of Perspective</span>
+      </button>
+      <nav class="links">
+        <a href="#gallery" data-go="home">Gallery</a>
+        <a href="#canvas" data-go="home">Perspectives</a>
+        <a href="#" class="share-link">Share</a>
+        <button id="acct">Log in</button>
+        <button id="theme" aria-label="Toggle light or dark">☾</button>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ===================== HOME ===================== -->
+  <main id="view-home">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="kick">An art community for every way of seeing</p>
+          <h1>The Art of Perspective</h1>
+          <p class="tag">One Artwork. A Thousand Perspectives.</p>
+          <p class="q">“Every person sees the world through a different lens. Discover the stories, emotions, and meanings people find in the same work of art.”</p>
+          <div class="cta">
+            <a class="btn" href="#gallery">Explore the Gallery</a>
+            <a class="btn ghost share-link" href="#">Share Your Perspective</a>
+          </div>
+        </div>
+        <div>
+          <div class="frame">
+            <div class="inner"><img src="images/mona-lisa.jpg" alt="Mona Lisa by Leonardo da Vinci"></div>
+          </div>
+          <p class="plaque">Mona Lisa, Leonardo da Vinci, c. 1503</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature section -->
+    <section class="sig" id="canvas">
+      <div class="wrap">
+        <div class="frame l">
+          <div class="inner"><img id="lensImg" src="images/the-fallen-angel.jpg" alt="The Fallen Angel by Alexandre Cabanel, shown in three moods"></div>
+        </div>
+        <div>
+          <div class="orn">✦</div>
+          <h2>The Same Canvas, Different Worlds</h2>
+          <div class="lens" role="group" aria-label="Choose a way of seeing">
+            <button aria-pressed="true" data-l="love">Love</button>
+            <button aria-pressed="false" data-l="loss">Loss</button>
+            <button aria-pressed="false" data-l="hope">Hope</button>
+          </div>
+          <p class="story" id="story" aria-live="polite"></p>
+          <p>An artwork does not have to mean the same thing to everyone. One person may see love, another may see loss, and another may discover hope. Explore different interpretations, join respectful discussions, and upload your own artwork.</p>
+          <p class="pull">“Your perspective matters. Add your voice to the canvas.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery (scrolls sideways; drag with the mouse) -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="head">
+          <div class="orn">✦</div>
+          <h2>The Gallery</h2>
+          <p>Choose a work to read what others have seen in it, then add your own view.</p>
+        </div>
+        <div class="railwrap">
+          <button class="rarr l" data-rail="-1" aria-label="Scroll left">‹</button>
+          <div class="grid rail" id="grid" tabindex="0"></div>
+          <button class="rarr r" data-rail="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ===================== ARTWORK DISCUSSION ===================== -->
+  <main id="view-art" class="art" hidden>
+    <div class="wrap art-top">
+      <button class="back" data-go="home" href="#gallery">← Back to the gallery</button>
+      <button class="back" id="del" hidden>Remove my artwork</button>
+    </div>
+    <div class="wrap">
+      <div>
+        <div class="frame" id="artFrame"><div class="inner" id="artBig"></div></div>
+      </div>
+      <div>
+        <h1 id="aTitle"></h1>
+        <p class="meta" id="aMeta"></p>
+        <p class="ask" id="aAsk"></p>
+        <div id="react" role="group" aria-label="React to this artwork"></div>
+
+        <h3 class="section-title">What people see</h3>
+        <div id="plist"></div>
+
+        <!-- Shown when logged in -->
+        <form class="form" id="pform">
+          <h3>Add your perspective</h3>
+          <div>
+            <label for="pl">What does it stir in you?</label>
+            <select class="field" id="pl">
+              <option>Love</option><option>Loss</option><option>Hope</option>
+              <option>Memory</option><option>Home</option><option>Wonder</option>
+            </select>
+          </div>
+          <div>
+            <label for="pt">Your interpretation</label>
+            <textarea class="field" id="pt" rows="4" required maxlength="600"></textarea>
+          </div>
+          <p class="rule">Be curious, not combative. Disagree with the idea, never the person.</p>
+          <button class="btn" type="submit">Post perspective</button>
+        </form>
+
+        <!-- Shown to guests -->
+        <div class="form" id="gate" hidden>
+          <h3>Join the conversation</h3>
+          <p class="rule">Log in or create a free account to react and share your perspective.</p>
+          <button class="btn" data-auth>Log in or register</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ===================== LOG IN / REGISTER ===================== -->
+  <main id="view-auth" hidden>
+    <div class="wrap narrow">
+      <div class="authbox">
+        <h2 id="authT"></h2>
+        <div class="tabs">
+          <button data-m="login">Log in</button>
+          <button data-m="reg">Register</button>
+        </div>
+        <form id="af">
+          <div class="field-row" id="fName">
+            <label for="an">Display name</label>
+            <input class="field" id="an" maxlength="40" autocomplete="name">
+          </div>
+          <div class="field-row">
+            <label for="ae">Email</label>
+            <input class="field" id="ae" type="email" required autocomplete="email">
+          </div>
+          <div class="field-row">
+            <label for="ap">Password</label>
+            <input class="field" id="ap" type="password" required minlength="6" autocomplete="current-password">
+          </div>
+          <p class="err" id="aerr" role="alert"></p>
+          <button class="btn" type="submit" id="asub"></button>
+          <p class="notice">Demo accounts are stored only in this browser. A live site needs a server to share accounts and artworks across visitors.</p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ===================== USER DASHBOARD ===================== -->
+  <main id="view-dash" hidden>
+    <div class="wrap dash">
+
+      <aside class="side">
+        <div class="who">
+          <div class="av" id="dAv"></div>
+          <b id="dName"></b>
+          <small id="dEmail"></small>
+        </div>
+        <button data-tab="gallery">My Gallery</button>
+        <button data-tab="add">Add Artwork</button>
+        <button data-tab="notes">Notifications<span class="badge" id="bd" hidden></span></button>
+        <button data-tab="profile">Profile</button>
+        <button id="logout">Log out</button>
+      </aside>
+
+      <div>
+        <!-- Tab: My Gallery -->
+        <div class="panel" id="p-gallery">
+          <h2>My Gallery</h2>
+          <div class="ready">
+            <div>
+              <h3>Ready to show your work?</h3>
+              <p>Add a new artwork and let others see it.</p>
+            </div>
+            <button class="btn" id="readyBtn">Add artwork</button>
+          </div>
+          <div class="grid rail" id="myGrid"></div>
+        </div>
+
+        <!-- Tab: Add Artwork -->
+        <div class="panel" id="p-add" hidden>
+          <h2>Add Artwork</h2>
+          <div class="form">
+            <div class="field-row">
+              <label for="wt">Title</label>
+              <input class="field" id="wt" maxlength="80">
+            </div>
+            <div class="field-row">
+              <label for="wq">A question for viewers (optional)</label>
+              <input class="field" id="wq" maxlength="140" placeholder="What do you see in this piece?">
+            </div>
+            <div class="field-row">
+              <label for="wf">Image</label>
+              <input type="file" id="wf" accept="image/*">
+            </div>
+            <div class="frame" id="wFrame" hidden>
+              <div class="inner"><img id="wPrev" alt="Preview of your artwork"></div>
+            </div>
+            <p class="notice" id="wNote"></p>
+            <button class="btn" id="wsub">Add to the gallery</button>
+          </div>
+        </div>
+
+        <!-- Tab: Notifications -->
+        <div class="panel" id="p-notes" hidden>
+          <h2>Notifications</h2>
+          <button class="btn ghost" id="readall">Mark all as read</button>
+          <div id="nlist"></div>
+        </div>
+
+        <!-- Tab: Profile -->
+        <div class="panel" id="p-profile" hidden>
+          <h2>Profile</h2>
+          <div class="form">
+            <div class="profile-pic">
+              <div class="av" id="pAv"></div>
+              <div>
+                <label for="avf">Profile picture</label><br>
+                <input type="file" id="avf" accept="image/*">
+              </div>
+            </div>
+            <div class="field-row">
+              <label for="pnm">Display name</label>
+              <input class="field" id="pnm" maxlength="40">
+            </div>
+            <div class="field-row">
+              <label for="pbio">Bio</label>
+              <textarea class="field" id="pbio" rows="3" maxlength="240"></textarea>
+            </div>
+            <button class="btn" id="psave">Save profile</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="t">The Art of Perspective</div>
+    <div>Where every interpretation becomes part of the masterpiece.</div>
+  </footer>
+  <div id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
