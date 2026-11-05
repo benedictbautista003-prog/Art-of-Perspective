@@ -18,7 +18,7 @@ const MUSEUM = [
     key: "mona",
     title: "Mona Lisa",
     byline: "Leonardo da Vinci, c. 1503",
-    image: "images/mona-lisa.jpg",
+    image: "mona-lisa.jpg",
     alt: "A woman with folded hands and a faint smile before a winding landscape, Mona Lisa by Leonardo da Vinci",
     question: "Is she smiling at you, or just past you?",
     seed: [
@@ -31,7 +31,7 @@ const MUSEUM = [
     key: "adam",
     title: "The Creation of Adam",
     byline: "Michelangelo, c. 1512",
-    image: "images/creation-of-adam.jpg",
+    image: "creation-of-adam.jpg",
     alt: "Detail of the Sistine Chapel ceiling: God reaching toward Adam, their fingers almost touching",
     question: "Is the gap between the fingers a beginning or a distance?",
     seed: [
@@ -44,7 +44,7 @@ const MUSEUM = [
     key: "angel",
     title: "The Fallen Angel",
     byline: "Alexandre Cabanel, 1847",
-    image: "images/the-fallen-angel.jpg",
+    image: "the-fallen-angel.jpg",
     alt: "A winged man in anguish, hiding his face with his arm, with angels fading in the sky above",
     question: "Is he defeated, or finally free?",
     seed: [
